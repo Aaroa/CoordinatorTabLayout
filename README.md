@@ -11,21 +11,21 @@ Inherited to the CoordinatorLayout, in the following components used CollapsingT
 ![show](showUI/show1.gif)
 
 
-##Usage
+## Usage
 
-###Step 1
+### Step 1
 
 Add the following to your build.gradle:
-```
+```groovy
 dependencies {
-    compile 'cn.hugeterry.coordinatortablayout:coordinatortablayout:1.0.6'
+    compile 'cn.hugeterry.coordinatortablayout:coordinatortablayout:1.2.2'
 }
 ```
 
-###Step 2
+### Step 2
 
 Config in xml:
-```
+```xml
 <cn.hugeterry.coordinatortablayout.CoordinatorTabLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinatortablayout"
@@ -41,14 +41,14 @@ Config in xml:
 ```
 
 
-###Step 3
+### Step 3
 
 ![show](showUI/show3.gif)</br>
 Use it in your own code:</br>
 1.`setTitle(String title)`:Set the CoordinatorTabLayout's title.</br>
 2.`setupWithViewPager(ViewPager viewPager)`:To link the two together.</br>
 3.`setImageArray(int[] imageArray)`:Set the image array of the header according to the number of tabs and pass it to the control.</br>
-```
+```java
         //Add the fragment to the viewpager
         initFragments();
         initViewPager();
@@ -68,14 +68,14 @@ Use it in your own code:</br>
 Finish, enjoy it.
 
 
-##More
+## More
 
-###Set the content scrim
+### Set the content scrim
 
 ![show](showUI/show2.gif)
 
 `setImageArray(int[] imageArray, int[] colorArray)`:Set the color array to use for the content scrim for each tab.
-```
+```java
         mColorArray = new int[]{
                 android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,
@@ -84,9 +84,27 @@ Finish, enjoy it.
         mCoordinatorTabLayout.setImageArray(mImageArray, mColorArray);
  ```
 
-###Set back enable
-`setBackEnable(Boolean canBack)`:To enable the Up button for an activity that has a parent activity.
+### Set translucent status bar
+
+![show](showUI/show4.png)
+
+`setTranslucentStatusBar(Activity activity)`:Set translucent status bar,Support android4.4 and above.
+```java
+mCoordinatorTabLayout.setTranslucentStatusBar(activity);
 ```
+
+### Set translucent navigation bar
+
+![show](showUI/show5.jpg)
+
+`setTranslucentNavigationBar(Activity activity)`:Set translucent navigation bar,Support android4.4 and above.
+```java
+mCoordinatorTabLayout.setTranslucentNavigationBar(activity);
+```
+
+### Set back enable
+`setBackEnable(Boolean canBack)`:To enable the Up button for an activity that has a parent activity.
+```java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ...
@@ -102,10 +120,10 @@ Finish, enjoy it.
     }
 ```
 
-###Load header images from network
+### Load header images from network
 
 `setLoadHeaderImagesListener(LoadHeaderImagesListener loadHeaderImagesListener)`:Set the listener that gets the header images.
-```
+```java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ...
@@ -128,7 +146,36 @@ Finish, enjoy it.
 ```
 You also can load header images using glide/picasso，[Sample](https://github.com/hugeterry/CoordinatorTabLayout/blob/master/sample/src/main/java/cn/hugeterry/coordinatortablayoutdemo/LoadHeaderImageFromNetworkActivity.java)
 
-###Gets the child control
+### Set the behavior mode for the Tabs in this layout
+
+`setTabMode(@TabLayout.Mode int mode)`:The valid input options are:MODE_FIXED,MODE_SCROLLABLE
+```java
+mCoordinatorTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+```
+
+### Add a CoordinatorTabLayout.OnTabSelectedListener
+
+`addOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener)`:Add a CoordinatorTabLayout.OnTabSelectedListener that will be invoked when tab selection changes.
+```java
+mCoordinatorTabLayout.addOnTabSelectedListener(new OnTabSelectedListener() {
+                         @Override
+                         public void onTabSelected(TabLayout.Tab tab) {
+
+                         }
+
+                         @Override
+                         public void onTabUnselected(TabLayout.Tab tab) {
+
+                         }
+
+                         @Override
+                         public void onTabReselected(TabLayout.Tab tab) {
+
+                         }
+                     })
+```
+
+### Gets the child control
 `getActionBar()`:get the ActionBar<br/>
 `getTabLayout()`:get the TabLayout<br/>
 `getImageView()`:get the ImageView
@@ -136,12 +183,12 @@ You also can load header images using glide/picasso，[Sample](https://github.co
 [More code](https://github.com/hugeterry/CoordinatorTabLayout/blob/master/sample/src/main/java/cn/hugeterry/coordinatortablayoutdemo/MainActivity.java)
 
 
-##Attributes
+## Attributes
 - `app:contentScrim` -> color.Defaults to ?attr/colorPrimary
 - `app:tabIndicatorColor` -> color.
 - `app:tabTextColor` -> color.
 
-##Demo
+## Demo
 [http://fir.im/ctlayout](http://fir.im/ctlayout)
 
 ## LICENSE

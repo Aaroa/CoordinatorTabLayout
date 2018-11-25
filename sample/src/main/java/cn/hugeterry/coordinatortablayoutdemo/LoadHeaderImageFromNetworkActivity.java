@@ -20,7 +20,6 @@ import cn.hugeterry.coordinatortablayout.listener.LoadHeaderImagesListener;
 
 /**
  * Created by hugeterry(http://hugeterry.cn)
- * Date: 17/2/9 13:32
  */
 public class LoadHeaderImageFromNetworkActivity extends AppCompatActivity {
     private CoordinatorTabLayout mCoordinatorTabLayout;
@@ -45,7 +44,8 @@ public class LoadHeaderImageFromNetworkActivity extends AppCompatActivity {
                 android.R.color.holo_green_light};
 
         mCoordinatorTabLayout = (CoordinatorTabLayout) findViewById(R.id.coordinatortablayout);
-        mCoordinatorTabLayout.setTitle("Demo")
+        mCoordinatorTabLayout.setTranslucentStatusBar(this)
+                .setTitle("Demo")
                 .setBackEnable(true)
                 .setContentScrimColorArray(mColorArray)
                 .setLoadHeaderImagesListener(new LoadHeaderImagesListener() {
